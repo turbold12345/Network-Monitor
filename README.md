@@ -1,62 +1,83 @@
-CYB Network Monitor
+# CYB Network Monitor
 
 A lightweight Python-based network monitoring tool designed to check host availability and service status.
 
-This project was built as part of practical cybersecurity and infrastructure learning, focusing on reliability monitoring and automation.
+This project was developed as part of practical cybersecurity and infrastructure learning, focusing on reliability monitoring and automation.
 
-Overview
+---
+
+## 📌 Overview
 
 CYB Network Monitor allows users to:
 
-Monitor multiple hosts simultaneously
+- Monitor multiple hosts simultaneously
+- Check if a host is reachable (ping)
+- Verify whether a specific port is open
+- Log status results with timestamps
+- Run checks continuously at defined intervals
+- Use a simple command-line interface
 
-Check if a host is reachable (ping)
+This tool is intended for educational purposes and authorized internal monitoring.
 
-Verify whether a specific port is open
+---
 
-Log status results with timestamps
+## 🚀 Features
 
-Run checks continuously at defined intervals
+- Multi-target monitoring
+- Optional port availability checking
+- Configurable monitoring interval
+- Multithreaded execution
+- Log file generation
+- Clean modular architecture
+- Input validation
+- CLI-based usage
 
-Use a simple command-line interface
-
-The tool is intended for educational purposes and authorized internal monitoring.
-
-Features
-
-Multi-target monitoring
-
-Optional port availability checking
-
-Configurable monitoring interval
-
-Multithreaded execution
-
-Log file generation
-
-Clean modular architecture
-
-Input validation
-
-CLI-based usage
-
-Usage
-
-Basic monitoring:
-
-python main.py -t google.com
+---
 
 
-Monitor multiple hosts:
+---
 
-python main.py -t google.com 8.8.8.8
+## ⚙ Installation
+
+Clone the repository:
+
+git clone https://github.com/turbold12345/Network-Monitor.git
+
+Navigate into the folder: cd Network-Monitor
 
 
-Monitor specific port:
+No external dependencies are required (uses standard Python library).
 
-python main.py -t google.com -p 80
+---
+
+## 🖥 Usage
+
+Basic monitoring:python main.py -t google.com
 
 
-Set custom interval (in seconds):
+Monitor multiple hosts: python main.py -t google.com 8.8.8.8
 
-python main.py -t google.com -p 80 -i 10
+
+Monitor a specific port: python main.py -t google.com -p 80
+
+
+Set custom interval (in seconds): python main.py -t google.com -p 80 -i 10
+
+---
+
+## 🔎 How It Works
+
+1. Targets are validated before execution.
+2. Each host is checked using ICMP ping.
+3. If a port is specified, a TCP connection attempt is performed.
+4. Results are displayed in the terminal.
+5. Results are written to `logs/monitor.log` with timestamps.
+6. Checks repeat based on the defined interval.
+
+---
+## ⚠ Disclaimer
+
+This tool is intended strictly for educational purposes and authorized network monitoring only. Unauthorized use against systems without permission is not permitted.
+
+---
+
