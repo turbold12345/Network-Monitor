@@ -1,0 +1,39 @@
+import socket
+import subprocess
+
+
+def ping_host(host):
+    try:
+        subprocess.check_output(
+            ["ping", "-n", "1", host],
+            stderr=subprocess.DEVNULL
+        )
+        return True
+    except:
+        return False
+
+
+def check_port(host, port):
+    try:
+        with socket.socket() as sock:
+            sock.settimeout(1)
+            sock.connect((host, port))
+            return True
+    except:
+        return False
+
+
+def check_host(host, port=None):
+    is_up = ping_host(host)
+
+    if not is_up:
+        return f"[DOWN] {host} unreachable"
+
+    if port:
+        port_open = check_port(host, port)
+        if port_open:
+            return f"[UP] {host} | Port {port} OPEN"
+        else:
+            return f"[UP] {host} | Port {port} CLOSED"
+
+    return f"[UP] {host} reachable"

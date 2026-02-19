@@ -1,0 +1,27 @@
+import time
+from concurrent.futures import ThreadPoolExecutor
+from .checker import check_host
+from .logger import log_status
+
+
+class NetworkMonitor:
+
+    def __init__(self, targets, port=None, interval=5):
+        self.targets = targets
+        self.port = port
+        self.interval = interval
+
+    def start(self):
+        print("Starting network monitoring...\n")
+
+        while True:
+            with ThreadPoolExecutor(max_workers=len(self.targets)) as executor:
+                for target in self.targets:
+                    executor.submit(self._monitor_target, target)
+
+            time.sleep(self.interval)
+
+    def _monitor_target(self, target):
+        status = check_host(target, self.port)
+        print(status)
+        log_status(status)
